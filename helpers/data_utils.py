@@ -12,16 +12,16 @@ It will contain the following functions:
 import pandas as pd
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer, DataCollatorForTokenClassification
-from torch.utils.data import DataLoader
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List
 
 #function to load the dataset from the Hugging Face datasets
-def load_hf_dataset(dataset_name: str, split: str) -> Dataset:
+def load_hf_dataset(dataset_name: str, split: str, trust_remote_code: bool = True) -> Dataset:
     """Load dataset from Hugging Face datasets
     
     Args:
         dataset_name: Name of the dataset to load
         split: Split of the dataset to load
+        trust_remote_code: Whether to trust remote code (needed for datasets with custom scripts)
 
     Returns:
         Dataset: Dataset from Hugging Face datasets
@@ -31,7 +31,7 @@ def load_hf_dataset(dataset_name: str, split: str) -> Dataset:
         test_ds = load_hf_dataset("nlpaueb/finer-139", "test")
         val_ds  = load_hf_dataset("nlpaueb/finer-139", "validation")
     """
-    return load_dataset(dataset_name, split)
+    return load_dataset(dataset_name, split=split, trust_remote_code=trust_remote_code)
 
 
 #function to process the dataset
