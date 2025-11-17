@@ -15,23 +15,32 @@ from transformers import AutoTokenizer, DataCollatorForTokenClassification
 from typing import Dict, List
 
 #function to load the dataset from the Hugging Face datasets
-def load_hf_dataset(dataset_name: str, split: str, trust_remote_code: bool = True) -> Dataset:
+def load_hf_dataset(dataset_name: str, split: str) -> Dataset:
     """Load dataset from Hugging Face datasets
     
     Args:
         dataset_name: Name of the dataset to load
         split: Split of the dataset to load
-        trust_remote_code: Whether to trust remote code (needed for datasets with custom scripts)
 
     Returns:
         Dataset: Dataset from Hugging Face datasets
     
+    Note:
+        For datasets that previously used loading scripts (like 'conll2003'), 
+        use the new Parquet-based versions instead:
+        - Old: 'conll2003' → New: 'conll2003' with 'conll2003' config
+        - Or use community versions like: 'eriktks/conll2003'
+    
     Example:
+        # Using the new format for CoNLL-2003
+        train_ds = load_hf_dataset("eriktks/conll2003", "train")
+        
+        # Or for other datasets
         train_ds = load_hf_dataset("nlpaueb/finer-139", "train")
         test_ds = load_hf_dataset("nlpaueb/finer-139", "test")
         val_ds  = load_hf_dataset("nlpaueb/finer-139", "validation")
     """
-    return load_dataset(dataset_name, split=split, trust_remote_code=trust_remote_code)
+    return load_dataset(dataset_name, split=split)
 
 
 #function to process the dataset

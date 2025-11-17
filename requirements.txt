@@ -7,7 +7,10 @@ pandas==2.1.1
 numpy==1.26.4
 
 #data visualization
-plotly==6.14.0
+plotly==5.20.0
 
 #data cleaning
 scikit-learn==1.3.1
+
+datasets==3.2.0
+transformers==4.44.2
