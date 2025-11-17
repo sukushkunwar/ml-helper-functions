@@ -103,7 +103,7 @@ def process_and_get_tokenized_dataset(dataset: Dataset, tokenizer: AutoTokenizer
             "labels": all_labels
     }
 
-    return dataset.map(tokenize_and_align_labels, batched=True)
+    return dataset.map(tokenize_and_align_labels, batched=True, remove_columns=dataset.column_names)
 
 #function to get the data collator
 def get_data_collator(tokenizer: AutoTokenizer) -> DataCollatorForTokenClassification:
