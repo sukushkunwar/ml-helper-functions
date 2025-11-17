@@ -1,7 +1,6 @@
-
 from helpers.data_utils import load_hf_dataset
 
-DATASET_NAME = "train"
+DATASET_NAME = "conll2003"
 TRAIN_SPLIT = "train"
 TEST_SPLIT = "test"
 VALIDATION_SPLIT = "validation"
